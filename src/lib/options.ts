@@ -198,7 +198,12 @@ export const codeSnippets = [
 ];
 
 type ThemeKey = keyof typeof themes;
+type FontKey = keyof typeof fonts;
 
 export type Themes = {
   [key in ThemeKey]: (typeof themes)[key];
+};
+
+export type Fonts = {
+  [key in FontKey]: (typeof fonts)[key];
 };
