@@ -13,6 +13,8 @@ import { Card, CardContent } from './ui/card';
 import ThemeSelect from './theme-select';
 import LanguageSelect from './language-select';
 import FontSelect from './font-select';
+import FontSizeInput from './font-size-input';
+import PaddingSlider from './padding-slider';
 
 export default function AppClient() {
   const { theme, padding, fontStyle, showBackground } = usePreferences();
@@ -108,8 +110,8 @@ export default function AppClient() {
           <ThemeSelect />
           <LanguageSelect />
           <FontSelect />
-          {/* <FontSizeInput /> */}
-          {/* <PaddingSlider /> */}
+          <FontSizeInput />
+          <PaddingSlider />
           {/* <BackgroundSwitch /> */}
           {/* <DarkModeSwitch /> */}
           {/* <div className="w-px bg-neutral-800" /> */}

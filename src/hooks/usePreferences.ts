@@ -19,6 +19,8 @@ interface StoreState {
   setTheme: (theme: keyof Themes) => void;
   setAutoDetectLanguage: (autoDetectLanguage: boolean) => void;
   setFontStyle: (fontStyle: keyof Fonts) => void;
+  setFontSize: (fontSize: number) => void;
+  setPadding: (padding: number) => void;
 }
 
 const usePreferences = create(
@@ -33,7 +35,7 @@ const usePreferences = create(
       autoDetectLanguage: false,
       fontSize: 16,
       fontStyle: 'sourceCodePro',
-      padding: 0,
+      padding: 8,
       setTitle: (title: string) => set({ title }),
       setCode: (code: string) => set({ code }),
       setLanguage: (language: string) => set({ language }),
@@ -41,6 +43,8 @@ const usePreferences = create(
       setAutoDetectLanguage: (autoDetectLanguage: boolean) =>
         set({ autoDetectLanguage }),
       setFontStyle: (fontStyle: keyof Fonts) => set({ fontStyle }),
+      setFontSize: (fontSize: number) => set({ fontSize }),
+      setPadding: (padding: number) => set({ padding }),
     }),
     {
       name: 'user-preferences',
