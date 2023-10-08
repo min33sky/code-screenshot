@@ -21,6 +21,8 @@ interface StoreState {
   setFontStyle: (fontStyle: keyof Fonts) => void;
   setFontSize: (fontSize: number) => void;
   setPadding: (padding: number) => void;
+  setShowBackground: (showBackground: boolean) => void;
+  setDarkmode: (darkMode: boolean) => void;
 }
 
 const usePreferences = create(
@@ -45,6 +47,8 @@ const usePreferences = create(
       setFontStyle: (fontStyle: keyof Fonts) => set({ fontStyle }),
       setFontSize: (fontSize: number) => set({ fontSize }),
       setPadding: (padding: number) => set({ padding }),
+      setShowBackground: (showBackground: boolean) => set({ showBackground }),
+      setDarkmode: (darkMode: boolean) => set({ darkMode }),
     }),
     {
       name: 'user-preferences',
