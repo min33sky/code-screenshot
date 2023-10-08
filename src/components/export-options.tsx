@@ -18,18 +18,17 @@ import usePreferences from '@/hooks/usePreferences';
 import { toBlob, toPng, toSvg } from 'html-to-image';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { toast } from 'sonner';
+import queryString from 'query-string';
 
 interface ExportOptionsProps {
   targetRef: React.RefObject<HTMLDivElement>;
 }
 
 export default function ExportOptions({ targetRef }: ExportOptionsProps) {
-  const { title } = usePreferences();
+  const { title, code } = usePreferences();
 
   const copyImage = async () => {
     if (!targetRef.current) return;
-
-    // const loading = toast.loading('Copying...');
 
     try {
       const imgBlob = await toBlob(targetRef.current, {
@@ -47,25 +46,38 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
     }
   };
 
-  // const copyLink = () => {
-  //   try {
-  //     const state = useStore.getState();
-  //     const queryParams = new URLSearchParams({
-  //       ...state,
-  //       code: btoa(state.code),
-  //     }).toString();
-  //     navigator.clipboard.writeText(`${location.href}?${queryParams}`);
+  const copyLink = () => {
+    try {
+      const url = queryString.stringifyUrl(
+        {
+          url: location.href,
+          query: {
+            code: btoa(code),
+          },
+        },
+        {
+          skipEmptyString: true,
+          skipNull: true,
+        },
+      );
 
-  //     toast.success('Link copied to clipboard!');
-  //   } catch (error) {
-  //     toast.error('Something went wrong!');
-  //   }
-  // };
+      console.log('url: ', url);
+
+      // const state = useStore.getState();
+      // const queryParams = new URLSearchParams({
+      //   ...state,
+      //   code: btoa(state.code),
+      // }).toString();
+      // navigator.clipboard.writeText(`${location.href}?${queryParams}`);
+
+      toast.success('Link copied to clipboard!');
+    } catch (error) {
+      toast.error('Something went wrong!');
+    }
+  };
 
   const saveImage = async (name: string, format: string) => {
     if (!targetRef.current) return;
-
-    // const loading = toast.loading(`Exporting ${format} image...`);
 
     try {
       let imgUrl, filename;
@@ -116,8 +128,7 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
         <DropdownMenuItem
           className="gap-2"
           onClick={() => {
-            alert('Not implemented yet!');
-            // copyLink();
+            copyLink();
           }}
         >
           <Link2Icon />
