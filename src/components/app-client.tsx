@@ -97,9 +97,6 @@ export default function AppClient() {
     return null;
   }
 
-  // console.log('showBackground: ', showBackground);
-  // console.log('theme: ', themes[theme].background);
-
   return (
     <>
       <link
@@ -147,8 +144,8 @@ export default function AppClient() {
         </div>
       </Resizable>
 
-      <Card className="fixed bottom-16 py-6 px-8 mx-6 bg-zinc-800/70 backdrop-blur">
-        <CardContent className="flex flex-wrap gap-6 p-0">
+      <Card className="fixed bottom-16 py-6 px-8 mx-6 bg-slate-800/50 text-slate-200  backdrop-blur border-slate-600 ">
+        <CardContent className="flex flex-wrap  justify-center gap-6 p-0">
           <ThemeSelect />
           <LanguageSelect />
           <FontSelect />
@@ -156,7 +153,7 @@ export default function AppClient() {
           <PaddingSlider />
           <BackgroundSwitch />
           <DarkModeSwitch />
-          <div className="w-px bg-neutral-800" />
+          <div className="hidden lg:block w-px bg-neutral-500" />
           <div className="place-self-center">
             <ExportOptions targetRef={editorRef} />
           </div>

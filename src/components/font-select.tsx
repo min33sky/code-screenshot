@@ -22,7 +22,7 @@ export default function FontSelect() {
         value={fontStyle}
         onValueChange={(fontStyle: keyof Fonts) => setFontStyle(fontStyle)}
       >
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-32 border-slate-500">
           <SelectValue placeholder="Select Font" />
         </SelectTrigger>
         <SelectContent className="dark max-h-[500px]">

@@ -29,7 +29,7 @@ export default function LanguageSelect() {
         Language
       </label>
       <Select value={language} onValueChange={handleChange}>
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-32 border-slate-500">
           {autoDetectLanguage && <MagicWandIcon className="mr-2" />}
           <SelectValue placeholder="Select Language" />
         </SelectTrigger>

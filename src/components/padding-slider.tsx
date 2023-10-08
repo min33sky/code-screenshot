@@ -11,7 +11,7 @@ export default function PaddingSlider() {
         Padding
       </label>
       <Slider
-        className="w-44 my-5"
+        className="w-44 my-5 bg-slate-500"
         value={[padding]}
         onValueChange={([padding]) => setPadding(padding)}
         max={128}

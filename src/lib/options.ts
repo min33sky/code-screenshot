@@ -84,7 +84,6 @@ export const themes = {
   },
   gotham: {
     background: 'bg-gradient-to-br from-gray-700 via-gray-900 to-black',
-
     theme:
       'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/black-metal-dark-funeral.min.css',
   },

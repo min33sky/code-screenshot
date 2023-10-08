@@ -7,7 +7,6 @@ import {
   SelectValue,
 } from './ui/select';
 import { Themes, themes } from '@/lib/options';
-import { useStore } from 'zustand';
 import usePreferences from '@/hooks/usePreferences';
 
 export default function ThemeSelect() {
@@ -22,7 +21,7 @@ export default function ThemeSelect() {
         value={theme}
         onValueChange={(theme: keyof Themes) => setTheme(theme as keyof Themes)}
       >
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-32 border-slate-500">
           <SelectValue placeholder="Select Theme" />
         </SelectTrigger>
         <SelectContent className="dark">

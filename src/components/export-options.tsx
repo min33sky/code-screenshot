@@ -50,9 +50,9 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
       const img = new ClipboardItem({ 'image/png': imgBlob });
       navigator.clipboard.write([img]);
 
-      toast.success('Image copied to clipboard!');
+      toast.success('이미지가 클립보드에 복사되었습니다!');
     } catch (error) {
-      toast.error('Something went wrong!');
+      toast.error('이미지 복사 중 문제가 생겼습니다!');
     }
   };
 
@@ -82,9 +82,9 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
 
       navigator.clipboard.writeText(url);
 
-      toast.success('Link copied to clipboard!');
+      toast.success('URL이 클릭보드에 복사되었습니다!');
     } catch (error) {
-      toast.error('Something went wrong!');
+      toast.error('URL 복사 중 문제가 생겼습니다!');
     }
   };
 
@@ -112,14 +112,14 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
       a.download = filename;
       a.click();
 
-      toast.success('Exported successfully!');
+      toast.success('이미지가 성공적으로 저장되었습니다!');
     } catch (error) {
-      toast.error('Something went wrong!');
+      toast.error('이미지 저장에 실패했습니다.');
     }
   };
 
   useHotkeys('ctrl+c', copyImage);
-  // useHotkeys('shift+ctrl+c', copyLink);
+  useHotkeys('shift+ctrl+c', copyLink);
   useHotkeys('ctrl+s', () => saveImage(title, 'PNG'));
   useHotkeys('shift+ctrl+s', () => saveImage(title, 'SVG'));
 

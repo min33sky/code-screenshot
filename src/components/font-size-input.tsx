@@ -12,7 +12,7 @@ export default function FontSizeInput() {
       </label>
       <Input
         type="number"
-        className="!dark w-16 bg-transparent"
+        className="!dark w-16 bg-transparent border-slate-500"
         min={6}
         value={fontSize}
         onChange={(e) => setFontSize(Number(e.target.value) || 18)}
