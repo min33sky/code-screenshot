@@ -17,6 +17,7 @@ import FontSizeInput from './font-size-input';
 import PaddingSlider from './padding-slider';
 import BackgroundSwitch from './background-switch';
 import DarkModeSwitch from './dark-mode-switch';
+import ExportOptions from './export-options';
 
 export default function AppClient() {
   const { theme, padding, fontStyle, showBackground } = usePreferences();
@@ -107,7 +108,7 @@ export default function AppClient() {
         </div>
       </Resizable>
 
-      <Card className="fixed bottom-16 py-6 px-8 mx-6 bg-zinc-800/95 backdrop-blur">
+      <Card className="fixed bottom-16 py-6 px-8 mx-6 bg-zinc-800/70 backdrop-blur">
         <CardContent className="flex flex-wrap gap-6 p-0">
           <ThemeSelect />
           <LanguageSelect />
@@ -118,7 +119,7 @@ export default function AppClient() {
           <DarkModeSwitch />
           <div className="w-px bg-neutral-800" />
           <div className="place-self-center">
-            {/* <ExportOptions targetRef={editorRef} /> */}
+            <ExportOptions targetRef={editorRef} />
           </div>
         </CardContent>
       </Card>
