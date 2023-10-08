@@ -19,36 +19,75 @@ import BackgroundSwitch from './background-switch';
 import DarkModeSwitch from './dark-mode-switch';
 import ExportOptions from './export-options';
 
+import queryString from 'query-string';
+
 export default function AppClient() {
-  const { theme, padding, fontStyle, showBackground } = usePreferences();
+  const {
+    theme,
+    padding,
+    fontStyle,
+    showBackground,
+    setCode,
+    setTheme,
+    setLanguage,
+    setFontSize,
+    setFontStyle,
+    setPadding,
+    setAutoDetectLanguage,
+    setDarkmode,
+  } = usePreferences();
   const [width, setWidth] = useState<string | number>('auto');
   const [showWidth, setShowWidth] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState<string>('');
-
-  useEffect(() => {
-    if (themes[theme].theme) {
-      setCurrentTheme(themes[theme].theme);
-    }
-  }, [theme]);
 
   const [mounted, setMounted] = useState(false);
 
   const editorRef = useRef<React.ElementRef<'div'>>(null);
 
-  // useEffect(() => {
-  //   const queryParams = new URLSearchParams(location.search)
-  //   if (queryParams.size === 0) return
-  //   const state = Object.fromEntries(queryParams)
+  useEffect(() => {
+    const parsedUrl = queryString.parseUrl(window.location.href);
+    const parsed = parsedUrl.query;
+    // console.log('code: ', atob(parsed.code as string));
+    if (parsed.code) {
+      setCode(atob(parsed.code as string));
+    }
 
-  //   useStore.setState({
-  //     ...state,
-  //     code: state.code ? atob(state.code) : "",
-  //     autoDetectLanguage: state.autoDetectLanguage === "true",
-  //     darkMode: state.darkMode === "true",
-  //     fontSize: Number(state.fontSize || 18),
-  //     padding: Number(state.padding || 64),
-  //   })
-  // }, [])
+    if (parsed.darkMode) {
+      setDarkmode(parsed.darkMode === 'true');
+    }
+
+    if (parsed.fontSize) {
+      setFontSize(Number(parsed.fontSize) || 18);
+    }
+
+    if (parsed.fontStyle) {
+      setFontStyle(parsed.fontStyle as keyof typeof fonts);
+    }
+
+    if (parsed.language) {
+      setLanguage(parsed.language as any);
+    }
+
+    if (parsed.padding) {
+      setPadding(Number(parsed.padding) || 16);
+    }
+
+    if (parsed.theme) {
+      setTheme(parsed.theme as any);
+    }
+
+    if (parsed.autoDetectLanguage) {
+      setAutoDetectLanguage(parsed.autoDetectLanguage === 'true');
+    }
+  }, [
+    setAutoDetectLanguage,
+    setCode,
+    setDarkmode,
+    setFontSize,
+    setFontStyle,
+    setLanguage,
+    setPadding,
+    setTheme,
+  ]);
 
   useEffect(() => {
     setMounted(true);
@@ -58,8 +97,8 @@ export default function AppClient() {
     return null;
   }
 
-  console.log('showBackground: ', showBackground);
-  console.log('theme: ', themes[theme].background);
+  // console.log('showBackground: ', showBackground);
+  // console.log('theme: ', themes[theme].background);
 
   return (
     <>

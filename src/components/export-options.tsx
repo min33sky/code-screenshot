@@ -25,7 +25,17 @@ interface ExportOptionsProps {
 }
 
 export default function ExportOptions({ targetRef }: ExportOptionsProps) {
-  const { title, code } = usePreferences();
+  const {
+    title,
+    code,
+    autoDetectLanguage,
+    darkMode,
+    fontSize,
+    fontStyle,
+    language,
+    padding,
+    theme,
+  } = usePreferences();
 
   const copyImage = async () => {
     if (!targetRef.current) return;
@@ -53,6 +63,13 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
           url: location.href,
           query: {
             code: btoa(code),
+            autoDetectLanguage,
+            darkMode,
+            fontSize,
+            fontStyle,
+            language,
+            padding,
+            theme,
           },
         },
         {
@@ -63,12 +80,7 @@ export default function ExportOptions({ targetRef }: ExportOptionsProps) {
 
       console.log('url: ', url);
 
-      // const state = useStore.getState();
-      // const queryParams = new URLSearchParams({
-      //   ...state,
-      //   code: btoa(state.code),
-      // }).toString();
-      // navigator.clipboard.writeText(`${location.href}?${queryParams}`);
+      navigator.clipboard.writeText(url);
 
       toast.success('Link copied to clipboard!');
     } catch (error) {

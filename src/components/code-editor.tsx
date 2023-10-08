@@ -1,8 +1,11 @@
+'use client';
+
 import usePreferences from '@/hooks/usePreferences';
 import { codeSnippets, fonts } from '@/lib/options';
 import { cn } from '@/lib/utils';
 import flourite from 'flourite';
 import hljs from 'highlight.js';
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import Editor from 'react-simple-code-editor';
 
@@ -23,12 +26,17 @@ export default function CodeEditor() {
     setLanguage,
   } = usePreferences();
 
+  const searchParams = useSearchParams();
+  const queryCode = searchParams.get('code');
+
   useEffect(() => {
+    if (queryCode) return;
+
     const randomSnippet =
       codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
     setCode(randomSnippet.code);
     setLanguage(randomSnippet.language);
-  }, [setCode, setLanguage]);
+  }, [queryCode, setCode, setLanguage]);
 
   useEffect(() => {
     if (autoDetectLanguage) {

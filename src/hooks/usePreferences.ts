@@ -29,7 +29,7 @@ const usePreferences = create(
   persist<StoreState>(
     (set) => ({
       code: '',
-      title: '',
+      title: 'untitled',
       theme: 'hyper',
       darkMode: false,
       showBackground: true,
